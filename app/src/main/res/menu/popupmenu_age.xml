@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/menuAge">
+        <item android:id="@+id/all_age" android:title="全齡"/>
+        <item android:id="@+id/child" android:title="幼齡"/>
+        <item android:id="@+id/adult" android:title="成年"/>
+
+    </group>
+
+</menu>

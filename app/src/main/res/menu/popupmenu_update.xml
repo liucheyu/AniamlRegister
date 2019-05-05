@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/menuUpdate">
+        <item android:id="@+id/all_days" android:title="不限"/>
+
+        <item android:id="@+id/one_month" android:title="1個月內"/>
+
+        <item android:id="@+id/todays" android:title="今日"/>
+
+    </group>
+
+</menu>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/menuUpdate">
+        <item android:id="@+id/allRegion" android:title="@string/allRegion"/>
+        <item android:id="@+id/taipei" android:title="@string/taipei"/>
+        <item android:id="@+id/newtaipei" android:title="@string/newtaipei"/>
+        <item android:id="@+id/keelung" android:title="@string/keelung"/>
+        <item android:id="@+id/yilan" android:title="@string/yilan"/>
+        <item android:id="@+id/taoyuan" android:title="@string/taoyuan"/>
+        <item android:id="@+id/hsinchu" android:title="@string/hsinchu"/>
+        <item android:id="@+id/hsinchu_city" android:title="@string/hsinchu_city"/>
+        <item android:id="@+id/miaoli" android:title="@string/miaoli"/>
+        <item android:id="@+id/taichung" android:title="@string/taichung"/>
+        <item android:id="@+id/changhua" android:title="@string/changhua"/>
+        <item android:id="@+id/nantou" android:title="@string/nantou"/>
+        <item android:id="@+id/yunlin" android:title="@string/yunlin"/>
+        <item android:id="@+id/chiayi" android:title="@string/chiayi"/>
+        <item android:id="@+id/chiayi_city" android:title="@string/chiayi_city"/>
+        <item android:id="@+id/tainan" android:title="@string/tainan"/>
+        <item android:id="@+id/kaohsiung" android:title="@string/kaohsiung"/>
+        <item android:id="@+id/pingtung" android:title="@string/pingtung"/>
+        <item android:id="@+id/hualien" android:title="@string/hualien"/>
+        <item android:id="@+id/taitung" android:title="@string/taitung"/>
+        <item android:id="@+id/penghu" android:title="@string/penghu"/>
+        <item android:id="@+id/kinmen" android:title="@string/kinmen"/>
+        <item android:id="@+id/lienchiang" android:title="@string/lienchiang"/>
+    </group>
+
+
+</menu>

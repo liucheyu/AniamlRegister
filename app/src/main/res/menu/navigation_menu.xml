@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+        android:id="@+id/adopt"
+        android:title="領養"/>
+        <item
+            android:id="@+id/strays"
+            android:title="流浪動物登錄"/>
+        <item
+            android:id="@+id/wild"
+            android:title="野生動物登錄"/>
+        <item
+            android:id="@+id/blacklist"
+            android:title="黑名單"/>
+
+    </group>
+
+
+</menu>

@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">AnimalRegister</string>
+    <string name="animal_welcome">流浪動物認養及登錄</string>
+    <string name="allRegion">全區</string>
+    <string name="taipei">台北市</string>
+    <string name="newtaipei">新北市</string>
+    <string name="keelung">基隆市</string>
+    <string name="yilan">宜蘭縣</string>
+    <string name="taoyuan">桃園縣</string>
+    <string name="hsinchu">新竹市</string>
+    <string name="hsinchu_city">新竹縣</string>
+    <string name="miaoli">苗栗縣</string>
+    <string name="taichung">台中市</string>
+    <string name="changhua">彰化縣</string>
+    <string name="nantou" >南投縣</string>
+    <string name="yunlin">雲林縣</string>
+    <string name="chiayi">嘉義縣</string>
+    <string name="chiayi_city">嘉義市</string>
+    <string name="tainan">台南市</string>
+    <string name="kaohsiung">高雄市</string>
+    <string name="pingtung">屏東縣</string>
+    <string name="hualien">花蓮縣</string>
+    <string name="taitung">台東縣</string>
+    <string name="penghu" >澎湖縣</string>
+    <string name="kinmen">金門縣</string>
+    <string name="lienchiang">連江縣</string>
+
+    <string name="all_days">不限時間</string>
+    <string name="three_days">3日內</string>
+    <string name="one_week">1週內</string>
+    <string name="one_month">1個月內</string>
+    <string name="haft_year">半年內</string>
+    <string name="today">今日</string>
+
+    <string name="all_age">全齡</string>
+    <string name="child">幼齡</string>
+    <string name="adult">成年</string>
+
+    <string name="all_sex">不限性別</string>
+    <string name="male">男生</string>
+    <string name="female">女生</string>
+
+    <string name="drawer_open">Drawer opened</string>
+    <string name="drawer_close">Drawer closed</string>
+
+    <string-array name="region">
+        <item>全區</item>
+        <item>北部</item>
+        <item>中部</item>
+        <item>南部</item>
+        <item>東部</item>
+        <item>外島</item>
+    </string-array>
+    <string-array name="update">
+        <item>不限時間</item>
+        <item>3日內</item>
+        <item>1週內</item>
+        <item>1個月內</item>
+        <item>半年內</item>
+    </string-array>
+    <string-array name="age">
+        <item>全齡</item>
+        <item>幼齡</item>
+        <item>成年</item>
+    </string-array>
+    <string-array name="sex">
+        <item>不限性別</item>
+        <item>男生</item>
+        <item>女生</item>
+    </string-array>
+
+
+    <string name="title_activity_maps">Map</string>
+
+
+</resources>
