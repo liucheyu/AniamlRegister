@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class register extends AppCompatActivity {
 
-    Button btnRegister,btnCat,btnDog,btnReset;
+    Button btnRegister,btnCat,btnDog,btnReset,btnRegisterReset;
     ListView registerListView;
     RegisterAdapter registerAdapter;
     private OkHttpClient okHttpClient;
@@ -46,9 +46,10 @@ public class register extends AppCompatActivity {
     }
 
 //    protected void onResume(){
+//
 //        Thread th = new Thread(okhttpRun);
 //        th.start();
-//        registerAdapter.notifyDataSetChanged();
+//        //registerAdapter.notifyDataSetChanged();
 //        super.onResume();
 //
 //    }
@@ -64,6 +65,14 @@ public class register extends AppCompatActivity {
             public void onClick(View v) {
                 Intent registerIntent = new Intent(register.this,registerData.class);
                 startActivity(registerIntent);
+            }
+        });
+        btnRegisterReset = findViewById(R.id.btnRegisterReset);
+        btnRegisterReset.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread th = new Thread(okhttpRun);
+                th.start();
             }
         });
     }

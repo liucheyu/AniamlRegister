@@ -51,12 +51,27 @@
 
     </LinearLayout>
 
-        <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="我要登錄"
-            android:layout_gravity="center_horizontal"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我要登錄"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:id="@+id/btnRegisterReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="重新整理"
+                android:layout_alignParentRight="true"/>
+
+
+        </RelativeLayout>
 
 
     <ListView
