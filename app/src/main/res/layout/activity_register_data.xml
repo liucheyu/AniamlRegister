@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".registerData"
     android:orientation="vertical"
     android:padding="20dp">
-    <ImageView
-        android:id="@+id/image"
+
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="請填入以下資料"
+        android:textSize="16sp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +30,8 @@
         <EditText
             android:id="@+id/edtRegister"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="範例:王大明"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +44,8 @@
         <EditText
             android:id="@+id/edtUpdate"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="年-月-分ex:2019-05-05" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,7 +58,8 @@
         <EditText
             android:id="@+id/edtKind"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="貓or狗" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,7 +72,8 @@
         <EditText
             android:id="@+id/edtColor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="請輸入顏色或花紋" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,7 +86,22 @@
         <EditText
             android:id="@+id/edtAge"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="請輸入成年or幼齡" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="性別:"/>
+        <EditText
+            android:id="@+id/edtSex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="請輸入男生or女生" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,7 +114,8 @@
         <EditText
             android:id="@+id/edtFind"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="請輸入大約的地址或地段" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -100,7 +128,8 @@
         <EditText
             android:id="@+id/edtShelter"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="若為可公布的地點再輸入" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,7 +142,8 @@
         <EditText
             android:id="@+id/edtContact"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="範例:王小明"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -126,7 +156,8 @@
         <EditText
             android:id="@+id/edtTel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="輸入可公布的市話或手機" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -141,10 +172,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="圖片網址:"/>
+        <EditText
+            android:id="@+id/edtUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
     <Button
-        android:id="@+id/btnImagUp"
+        android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="上傳圖片"/>
+        android:layout_gravity="center_horizontal"
+        android:text="送出"/>
+
 </LinearLayout>
+</ScrollView>
