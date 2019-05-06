@@ -45,6 +45,14 @@ public class register extends AppCompatActivity {
 
     }
 
+//    protected void onResume(){
+//        Thread th = new Thread(okhttpRun);
+//        th.start();
+//        registerAdapter.notifyDataSetChanged();
+//        super.onResume();
+//
+//    }
+
     private void findViews(){
         btnRegister = findViewById(R.id.btnRegister);
         btnCat = findViewById(R.id.btnCat);
