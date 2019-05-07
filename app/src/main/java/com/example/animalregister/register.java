@@ -34,7 +34,7 @@ public class register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        registerList = new ArrayList<>();
+
         findViews();
 
         okHttpClient = new OkHttpClient();
@@ -105,6 +105,7 @@ public class register extends AppCompatActivity {
                 String json = response.body().string();
                 System.out.println(json);
 
+                registerList = new ArrayList<>();
                 parseJSON(json);
                 registerAdapter = new RegisterAdapter(register.this, registerList);
 

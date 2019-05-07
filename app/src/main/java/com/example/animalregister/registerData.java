@@ -1,11 +1,14 @@
 package com.example.animalregister;
 
+import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -22,13 +25,21 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class registerData extends AppCompatActivity {
 
-    EditText edtRegister,edtUpdate,edtKind,edtColor,edtAge,edtSex,
+    EditText edtRegister,edtKind,edtColor,edtAge,edtSex,
             edtFind,edtShelter,edtContact,edtTel,edtRemark,edtUrl;
-    Button btnSend;
+    Button btnDatePick,btnSend;
+    int mYear,mMonth,mDay;
+    TextView txtDateShow;
     OkHttpClient client;
     JSONArray jsonArr;
     String txtRegister,txtUpdate,txtKind,txtColor,txtAge,txtSex,txtFind,txtShelter,txtContact,txtTel,txtRemark,txtUrl;
@@ -46,7 +57,7 @@ public class registerData extends AppCompatActivity {
 
     private void findViews(){
         edtRegister = findViewById(R.id.edtRegister);
-        edtUpdate = findViewById(R.id.edtUpdate);
+
         edtKind = findViewById(R.id.edtKind);
         edtColor = findViewById(R.id.edtColor);
         edtAge = findViewById(R.id.edtAge);
@@ -57,23 +68,43 @@ public class registerData extends AppCompatActivity {
         edtTel = findViewById(R.id.edtTel);
         edtRemark = findViewById(R.id.edtRemark);
         edtUrl = findViewById(R.id.edtUrl);
+        txtDateShow = findViewById(R.id.txtDateShow);
+        btnDatePick = findViewById(R.id.btnDatePick);
+        btnDatePick.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeZone(TimeZone.getTimeZone("GTM+8"));
+                mYear = cal.get(Calendar.YEAR);
+                mMonth = cal.get(Calendar.MONTH);
+                mDay = cal.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog.OnDateSetListener dateListerner = new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        txtDateShow.setText(""+year+"-" + (month+1) + "-" + dayOfMonth);
+                    }
+                };
+                new DatePickerDialog(registerData.this,dateListerner,mYear,mMonth,mDay).show();
+            }
+        });
+
         btnSend = findViewById(R.id.btnSend);
         btnSend.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                txtRegister = edtRegister.getText().toString();
-                txtUpdate = edtUpdate.getText().toString();
-                txtKind = edtKind.getText().toString();
-                txtColor = edtColor.getText().toString();
-                txtAge = edtAge.getText().toString();
-                txtSex = edtSex.getText().toString();
-                txtFind = edtFind.getText().toString();
-                txtShelter = edtShelter.getText().toString();
-                txtContact = edtContact.getText().toString();
-                txtTel = edtTel.getText().toString();
-                txtRemark = edtRemark.getText().toString();
-                txtUrl = edtRemark.getText().toString();
+                txtRegister = "".equals(edtRegister.getText().toString().trim()) ? "空白" : edtRegister.getText().toString();
+                txtUpdate = "".equals(txtDateShow.getText().toString().trim())  ? "空白" : txtDateShow.getText().toString();
+                txtKind = "".equals(edtKind.getText().toString().trim())  ? "空白" : edtKind.getText().toString();
+                txtColor = "".equals(edtColor.getText().toString().trim())  ? "空白" : edtColor.getText().toString();
+                txtAge = "".equals(edtAge.getText().toString().trim()) ? "空白" : edtAge.getText().toString();
+                txtSex = "".equals(edtSex.getText().toString().trim()) ? "空白" : edtSex.getText().toString();
+                txtFind = "".equals(edtFind.getText().toString().trim()) ? "空白" : edtFind.getText().toString();
+                txtShelter = "".equals(edtShelter.getText().toString().trim())  ? "空白" : edtShelter.getText().toString();
+                txtContact = "".equals(edtContact.getText().toString().trim()) ? "空白" : edtContact.getText().toString();
+                txtTel = "".equals(edtTel.getText().toString().trim()) ? "空白" : edtTel.getText().toString();
+                txtRemark = "".equals(edtRemark.getText().toString().trim())  ? "空白" : edtRemark.getText().toString();
+                txtUrl = "".equals(edtUrl.getText().toString().trim())  ? "空白" : edtUrl.getText().toString();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -81,7 +112,8 @@ public class registerData extends AppCompatActivity {
                     }
                 }).start();
                 edtRegister.setText("");
-                edtUpdate.setText("");
+                //edtUpdate.setText("");
+                txtDateShow.setText("");
                 edtKind.setText("");
                 edtColor.setText("");
                 edtAge.setText("");

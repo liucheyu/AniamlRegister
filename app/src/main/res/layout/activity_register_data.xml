@@ -41,11 +41,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="登錄時間:"/>
-        <EditText
-            android:id="@+id/edtUpdate"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnDatePick"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="年-月-分ex:2019-05-05" />
+            android:text="設定時間"/>
+        <TextView
+            android:id="@+id/txtDateShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
