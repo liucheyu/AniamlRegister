@@ -1,6 +1,7 @@
 package com.example.animalregister;
 
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,12 +29,14 @@ public class register extends AppCompatActivity {
     RegisterAdapter registerAdapter;
     private OkHttpClient okHttpClient;
     private ArrayList<AdaopData_register> registerList;
-
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private String kind;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        kind = "";
 
         findViews();
 
@@ -56,10 +59,24 @@ public class register extends AppCompatActivity {
 
     private void findViews(){
         btnRegister = findViewById(R.id.btnRegister);
-        btnCat = findViewById(R.id.btnCat);
-        btnDog = findViewById(R.id.btnDog);
+        btnCat = findViewById(R.id.btnCatR);
+        btnDog = findViewById(R.id.btnDogR);
+        btnReset = findViewById(R.id.btnResetR);
+        btnCat.setOnClickListener(btnLis);
+        btnDog.setOnClickListener(btnLis);
+        btnReset.setOnClickListener(btnLis);
         registerListView = findViewById(R.id.registerList);
-        btnReset = findViewById(R.id.btnReset);
+        swipeRefreshLayout = findViewById(R.id.swipe2);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                Thread th = new Thread(okhttpRun);
+                th.start();
+            }
+        });
+
+
         btnRegister.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,20 +84,37 @@ public class register extends AppCompatActivity {
                 startActivity(registerIntent);
             }
         });
-        btnRegisterReset = findViewById(R.id.btnRegisterReset);
-        btnRegisterReset.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Thread th = new Thread(okhttpRun);
-                th.start();
-            }
-        });
+
     }
+
+    Button.OnClickListener btnLis = new Button.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int btnWhat = v.getId();
+            switch (btnWhat){
+                case R.id.btnCatR:
+                    kind = "貓";
+
+                    break;
+                case R.id.btnDogR:
+                    kind = "狗";
+                    break;
+                case R.id.btnResetR:
+                    kind = "all";
+                    break;
+
+            }
+            Thread th = new Thread(okhttpRun);
+            th.start();
+        }
+    };
 
     Runnable okhttpRun = new Runnable() {
         @Override
         public void run() {
-            getOkHttpConnect("http://lcyweb.000webhostapp.com/search_db.php");
+            getOkHttpConnect("");
+            //http://lcyweb.000webhostapp.com/search_db.php
+            //
         }
     };
 
@@ -113,6 +147,7 @@ public class register extends AppCompatActivity {
                     @Override
                     public void run() {
                         registerListView.setAdapter(registerAdapter);
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 });
             }

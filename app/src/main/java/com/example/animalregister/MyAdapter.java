@@ -47,6 +47,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private ArrayList<AdopData> adoptList;
     private FavoriteDBController DBController;
 
+
     MyAdapter(Context context,ArrayList<AdopData> adoptList,FavoriteDBController DBController){
         this.context = context;
         this.adoptList = adoptList;
@@ -168,6 +169,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         //判斷是否是空字串，不是空字串就是網址
 //        if(!image.equals("")){
             //getPic方法使用okHttp取得網址回應，再將回應的串流轉成Bitmap
+
             Glide.with(context)
                     .load(image)
                     .placeholder(R.mipmap.noimage)
