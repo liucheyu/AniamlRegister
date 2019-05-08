@@ -94,7 +94,7 @@ public class registerData extends AppCompatActivity {
             public void onClick(View v) {
 
                 txtRegister = "".equals(edtRegister.getText().toString().trim()) ? "空白" : edtRegister.getText().toString();
-                txtUpdate = "".equals(txtDateShow.getText().toString().trim())  ? "空白" : txtDateShow.getText().toString();
+                txtUpdate = "".equals(txtDateShow.getText().toString().trim())  ? (mYear + "-" + mMonth + "-" + mDay) : txtDateShow.getText().toString();
                 txtKind = "".equals(edtKind.getText().toString().trim())  ? "空白" : edtKind.getText().toString();
                 txtColor = "".equals(edtColor.getText().toString().trim())  ? "空白" : edtColor.getText().toString();
                 txtAge = "".equals(edtAge.getText().toString().trim()) ? "空白" : edtAge.getText().toString();

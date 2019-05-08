@@ -71,6 +71,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            kind = (TextView)itemView.findViewById(R.id.txtKind);
+            update = (TextView)itemView.findViewById(R.id.txtUpdate);
+            animalId = (TextView) itemView.findViewById(R.id.txtId);
+            color = (TextView)itemView.findViewById(R.id.txtColor);
+            age = (TextView)itemView.findViewById(R.id.txtAge);
+            sex = (TextView)itemView.findViewById(R.id.txtSex);
+            shelter = (TextView)itemView.findViewById(R.id.txtShelter);
+            address = (TextView)itemView.findViewById(R.id.txtAddress);
+            tel = (TextView)itemView.findViewById(R.id.txtTel);
+            remark = (TextView)itemView.findViewById(R.id.txtRemark);
+            animailImage = (ImageView)itemView.findViewById(R.id.animalImage);
+            btnMap = (ImageButton)itemView.findViewById(R.id.btnmap);
+            btnTel = (ImageButton)itemView.findViewById(R.id.btntel);
+            btnFavotite = (ImageButton)itemView.findViewById(R.id.btnFavorite);
+            btnMap = (ImageButton) itemView.findViewById(R.id.btnmap);
+            btnTel = (ImageButton) itemView.findViewById(R.id.btntel);
+            btnFavotite = (ImageButton) itemView.findViewById(R.id.btnFavorite);
+
         }
     }
 
@@ -78,25 +96,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View itemview = layoutInflater.inflate(R.layout.adop_listview,viewGroup,false);
-        MyViewHolder holder = new MyViewHolder(itemview);
-        holder.kind = (TextView)itemview.findViewById(R.id.txtKind);
-        holder.update = (TextView)itemview.findViewById(R.id.txtUpdate);
-        holder.animalId = (TextView) itemview.findViewById(R.id.txtId);
-        holder.color = (TextView)itemview.findViewById(R.id.txtColor);
-        holder.age = (TextView)itemview.findViewById(R.id.txtAge);
-        holder.sex = (TextView)itemview.findViewById(R.id.txtSex);
-        holder.shelter = (TextView)itemview.findViewById(R.id.txtShelter);
-        holder.address = (TextView)itemview.findViewById(R.id.txtAddress);
-        holder.tel = (TextView)itemview.findViewById(R.id.txtTel);
-        holder.remark = (TextView)itemview.findViewById(R.id.txtRemark);
-        holder.animailImage = (ImageView)itemview.findViewById(R.id.animalImage);
-        holder.btnMap = (ImageButton)itemview.findViewById(R.id.btnmap);
-        holder.btnTel = (ImageButton)itemview.findViewById(R.id.btntel);
-        holder.btnFavotite = (ImageButton)itemview.findViewById(R.id.btnFavorite);
-        holder.btnMap = (ImageButton) itemview.findViewById(R.id.btnmap);
-        holder.btnTel = (ImageButton) itemview.findViewById(R.id.btntel);
-        holder.btnFavotite = (ImageButton) itemview.findViewById(R.id.btnFavorite);
+        View itemView = layoutInflater.inflate(R.layout.adop_listview,viewGroup,false);
+        MyViewHolder holder = new MyViewHolder(itemView);
+//        holder.kind = (TextView)itemView.findViewById(R.id.txtKind);
+//        holder.update = (TextView)itemView.findViewById(R.id.txtUpdate);
+//        holder.animalId = (TextView) itemView.findViewById(R.id.txtId);
+//        holder. color = (TextView)itemView.findViewById(R.id.txtColor);
+//        holder.age = (TextView)itemView.findViewById(R.id.txtAge);
+//        holder.sex = (TextView)itemView.findViewById(R.id.txtSex);
+//        holder.shelter = (TextView)itemView.findViewById(R.id.txtShelter);
+//        holder.address = (TextView)itemView.findViewById(R.id.txtAddress);
+//        holder.tel = (TextView)itemView.findViewById(R.id.txtTel);
+//        holder.remark = (TextView)itemView.findViewById(R.id.txtRemark);
+//        holder.animailImage = (ImageView)itemView.findViewById(R.id.animalImage);
+//        holder.btnMap = (ImageButton)itemView.findViewById(R.id.btnmap);
+//        holder.btnTel = (ImageButton)itemView.findViewById(R.id.btntel);
+//        holder.btnFavotite = (ImageButton)itemView.findViewById(R.id.btnFavorite);
+//        holder.btnMap = (ImageButton) itemView.findViewById(R.id.btnmap);
+//        holder.btnTel = (ImageButton) itemView.findViewById(R.id.btntel);
+//        holder.btnFavotite = (ImageButton) itemView.findViewById(R.id.btnFavorite);
 
         return holder;
     }
@@ -155,14 +173,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     .placeholder(R.mipmap.noimage)
                     .error(R.mipmap.noimage)
                     .into(holder.animailImage);
-            //getPic(image,holder.animailImage);
 
-            //執行緒
-//            Thread th = new Thread(new GetPicThread(image,holder.animailImage));
-//            th.start();
-
-
-//        }
         //設定監聽，每個設定監聽內都有會返回實作事件的方法
         holder.btnMap.setOnClickListener(initMapButton(shelterName,shelterAddress));
         holder.btnTel.setOnClickListener(initTelButton(telnumber));

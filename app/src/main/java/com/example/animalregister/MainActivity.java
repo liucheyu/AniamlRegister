@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
     private void findViews(){
         //adoplv = findViewById(R.id.adopList);
         recyclerView = findViewById(R.id.recycleview);
+        recyclerView.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
