@@ -11,8 +11,10 @@ import android.widget.ListView;
 
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import org.json.JSONArray;
@@ -36,7 +38,7 @@ public class register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        kind = "";
+        kind = "all";
 
         findViews();
 
@@ -70,6 +72,7 @@ public class register extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                kind = "all";
                 swipeRefreshLayout.setRefreshing(true);
                 Thread th = new Thread(okhttpRun);
                 th.start();
@@ -112,16 +115,20 @@ public class register extends AppCompatActivity {
     Runnable okhttpRun = new Runnable() {
         @Override
         public void run() {
-            getOkHttpConnect("");
+            getOkHttpConnect("http://lcyweb.000webhostapp.com/android_db_kind.php");
+            //http://lcyweb.000webhostapp.com/android_db_kind.php
             //http://lcyweb.000webhostapp.com/search_db.php
-            //
         }
     };
 
     private void getOkHttpConnect(String s) {
+        RequestBody requestBody = new FormEncodingBuilder()
+                .add("kind",kind)
+                .build();
         //建立連線
         Request request = new Request.Builder()
                 .url(s)
+                .post(requestBody)
                 .build();
         //客戶端呼叫告知需求
         Call call = okHttpClient.newCall(request);
