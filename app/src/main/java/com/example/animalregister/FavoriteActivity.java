@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -45,20 +46,42 @@ import java.util.Locale;
 
 public class FavoriteActivity extends AppCompatActivity {
     private ArrayList<AdopData> favotiteList;
-    FavoriteAdapter favoriteAdapter;
-    ListView falv;
+    private FavoriteAdapter favoriteAdapter;
+    private ListView falv;
     private ImageButton btnMap,btnTel,btnFavotite,btnClose;
     private FavoriteDBController DBController;
+    private RelativeLayout favoriteRelate;
+    private Button favotiteBtnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
         falv = findViewById(R.id.favoriteList);
-
+        favoriteRelate = findViewById(R.id.favoriteRelate);
+        favotiteBtnBack = findViewById(R.id.favotiteBtnBack);
+        favotiteBtnBack.setOnClickListener(favotiteBtnBackLis);
         DBController = new FavoriteDBController(FavoriteActivity.this);
         Thread th = new Thread(r);
         th.start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(favotiteList.size() == 0){
+                            favoriteRelate.setVisibility(View.VISIBLE);
+                            falv.setVisibility(View.GONE);
+                        }else{
+                            favoriteRelate.setVisibility(View.GONE);
+                            falv.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+            }
+        }).start();
+
 //        initList();
 //        runOnUiThread(new Runnable() {
 //            @Override
@@ -104,10 +127,12 @@ public class FavoriteActivity extends AppCompatActivity {
 
     }
 
-    protected void onDestroy(){
-        btnClose.setVisibility(View.GONE);
-        super.onDestroy();
-    }
+    Button.OnClickListener favotiteBtnBackLis = new Button.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            falv.smoothScrollToPosition(0);
+        }
+    };
 
     Runnable r = new Runnable() {
         @Override
@@ -292,6 +317,12 @@ public class FavoriteActivity extends AppCompatActivity {
                     favotiteList.remove(position);
 
                     favoriteAdapter.notifyDataSetChanged();
+                    if(favotiteList.size() == 0){
+                        favoriteRelate.setVisibility(View.VISIBLE);
+                        falv.setVisibility(View.GONE);
+                    }else{
+                        favoriteRelate.setVisibility(View.GONE);
+                    }
 
                     DBController.delete(animalid);
 

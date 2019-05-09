@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AnimalRegister</string>
+    <string name="app_name">流浪動物認養及登錄</string>
     <string name="animal_welcome">流浪動物認養及登錄</string>
     <string name="allRegion">全區</string>
     <string name="taipei">台北市</string>

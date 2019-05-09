@@ -105,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
     private Calendar cal;
     //UrlFilter urlFilter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-
+    private RelativeLayout  coverRelate;
+    private TextView loadingproblem,loadingfail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,6 +151,10 @@ public class MainActivity extends AppCompatActivity {
         mSwipeRefreshLayout.setOnRefreshListener(refreshLis);
         recyclerView = findViewById(R.id.recycleview);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setVisibility(View.GONE);
+        coverRelate = findViewById(R.id.coverRelate);
+        loadingproblem = findViewById(R.id.loadingproblem);
+        loadingfail = findViewById(R.id.loadingfail);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -217,10 +222,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void btnBack(View view){
+        recyclerView.smoothScrollToPosition(0);
+    }
+
     SwipeRefreshLayout.OnRefreshListener refreshLis = new SwipeRefreshLayout.OnRefreshListener() {
 
         @Override
         public void onRefresh() {
+            coverRelate.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+
             mSwipeRefreshLayout.setRefreshing(true);
             plusUrl = new String(url);
             btnCat.setEnabled(true);
@@ -236,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
+
                     getOkHttpConnect(url);
 
                 }
@@ -250,6 +263,8 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             //String newJSON = new String(json);
             //String animalkind = null;
+            coverRelate.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
 
             switch (v.getId()){
                 case R.id.btnCat:
@@ -325,6 +340,7 @@ public class MainActivity extends AppCompatActivity {
                     btnSex.setText(R.string.all_sex);
                     btnUpdate.setEnabled(true);
                     btnUpdate.setText(R.string.all_days);
+
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -342,6 +358,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void getOkHttpConnect(String s) {
+
+
         //建立連線
         Request request = new Request.Builder()
                 .url(s)
@@ -355,6 +373,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Request request, IOException e) {
                 Log.d("OKHTTP", "連線失敗" + e.getMessage());
+                coverRelate.setVisibility(View.VISIBLE);
+
+                loadingfail.setVisibility(View.VISIBLE);
             }
             //有回應時的事件
             @Override
@@ -367,8 +388,16 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+
+
                         recyclerView.setAdapter(adopAdapter);
                         mSwipeRefreshLayout.setRefreshing(false);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        coverRelate.setVisibility(View.GONE);
+                        loadingfail.setVisibility(View.GONE);
+
+
+
                     }
                 });
             }
@@ -414,22 +443,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void chechPermision(){
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION
-            },1);
+    private void chechPermision() {
+        if (
+                ActivityCompat.checkSelfPermission(
+                        this, Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED &&
+                        ActivityCompat.checkSelfPermission(
+                                this, Manifest.permission.ACCESS_COARSE_LOCATION
+                        ) != PackageManager.PERMISSION_GRANTED &&
+                        ActivityCompat.checkSelfPermission(
+                                this, Manifest.permission.CALL_PHONE
+                        ) != PackageManager.PERMISSION_GRANTED &&
+                        ActivityCompat.checkSelfPermission(
+                                this, Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                    this, new String[]{
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                            Manifest.permission.CALL_PHONE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    }, 1);
         }
-
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CALL_PHONE},1);
-        }
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-        }
-
-
     }
+
 
     Button.OnClickListener regionLis = new Button.OnClickListener(){
 
@@ -440,6 +478,8 @@ public class MainActivity extends AppCompatActivity {
             popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
+                    coverRelate.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
                     switch (item.getItemId()){
                         case R.id.allRegion:
                             btnRegion.setText(getResources().getString(R.string.allRegion));
@@ -770,6 +810,8 @@ public class MainActivity extends AppCompatActivity {
             popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
+                    coverRelate.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
                     switch (item.getItemId()) {
                         case R.id.all_days:
                             btnUpdate.setText(getResources().getString(R.string.all_days));
@@ -863,8 +905,11 @@ public class MainActivity extends AppCompatActivity {
             PopupMenu popupMenu = new PopupMenu(MainActivity.this,v);
             popupMenu.getMenuInflater().inflate(R.menu.popupmenu_age,popupMenu.getMenu());
             popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
+                    coverRelate.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
                     switch (item.getItemId()) {
                         case R.id.all_age:
                             btnAge.setText(getResources().getString(R.string.all_age));
@@ -935,6 +980,8 @@ public class MainActivity extends AppCompatActivity {
             popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
+                    coverRelate.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
                     switch (item.getItemId()) {
                         case R.id.all_sex:
                             btnSex.setText(getResources().getString(R.string.all_sex));

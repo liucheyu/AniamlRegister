@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -26,13 +28,15 @@ import java.util.ArrayList;
 
 public class register extends AppCompatActivity {
 
-    Button btnRegister,btnCat,btnDog,btnReset,btnRegisterReset;
-    ListView registerListView;
-    RegisterAdapter registerAdapter;
+    private Button btnRegister,btnCat,btnDog,btnReset,btnRegisterReset,registerBtnBack;
+    private ListView registerListView;
+    private RegisterAdapter registerAdapter;
     private OkHttpClient okHttpClient;
     private ArrayList<AdaopData_register> registerList;
     private SwipeRefreshLayout swipeRefreshLayout;
     private String kind;
+    private RelativeLayout register_relate;
+    private TextView register_loadingproblem,register_loadingfail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,11 +71,18 @@ public class register extends AppCompatActivity {
         btnCat.setOnClickListener(btnLis);
         btnDog.setOnClickListener(btnLis);
         btnReset.setOnClickListener(btnLis);
+        registerBtnBack = findViewById(R.id.registerBtnBack);
+        registerBtnBack.setOnClickListener(registerBtnBackLis);
         registerListView = findViewById(R.id.registerList);
+        register_relate = findViewById(R.id.register_relate);
+        register_loadingproblem = findViewById(R.id.register_loadingproblem);
+        register_loadingfail = findViewById(R.id.register_loadingfail);
         swipeRefreshLayout = findViewById(R.id.swipe2);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                registerListView.setVisibility(View.GONE);
+                register_relate.setVisibility(View.VISIBLE);
                 kind = "all";
                 swipeRefreshLayout.setRefreshing(true);
                 Thread th = new Thread(okhttpRun);
@@ -90,9 +101,19 @@ public class register extends AppCompatActivity {
 
     }
 
+    Button.OnClickListener registerBtnBackLis = new Button.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            registerListView.smoothScrollToPosition(0);
+        }
+    };
+
+
     Button.OnClickListener btnLis = new Button.OnClickListener() {
         @Override
         public void onClick(View v) {
+            registerListView.setVisibility(View.GONE);
+            register_relate.setVisibility(View.VISIBLE);
             int btnWhat = v.getId();
             switch (btnWhat){
                 case R.id.btnCatR:
@@ -103,6 +124,7 @@ public class register extends AppCompatActivity {
                     kind = "狗";
                     break;
                 case R.id.btnResetR:
+
                     kind = "all";
                     break;
 
@@ -139,12 +161,13 @@ public class register extends AppCompatActivity {
             @Override
             public void onFailure(Request request, IOException e) {
                 Log.d("OKHTTP", "連線失敗" + e.getMessage());
+                register_loadingfail.setVisibility(View.VISIBLE);
             }
             //有回應時的事件
             @Override
             public void onResponse(Response response) throws IOException {
                 String json = response.body().string();
-                System.out.println(json);
+                //System.out.println(json);
 
                 registerList = new ArrayList<>();
                 parseJSON(json);
@@ -155,6 +178,10 @@ public class register extends AppCompatActivity {
                     public void run() {
                         registerListView.setAdapter(registerAdapter);
                         swipeRefreshLayout.setRefreshing(false);
+                        registerListView.setVisibility(View.VISIBLE);
+                        register_relate.setVisibility(View.GONE);
+                        register_loadingfail.setVisibility(View.GONE);
+
                     }
                 });
             }

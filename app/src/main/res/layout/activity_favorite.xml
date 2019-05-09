@@ -7,9 +7,37 @@
     tools:context=".FavoriteActivity"
     android:orientation="vertical"
     android:padding="20dp">
+    <RelativeLayout
+        android:id="@+id/favoriteRelate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:visibility="visible">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="尚無資料，請加入資料"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ListView
         android:id="@+id/favoriteList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+        <Button
+            android:id="@+id/favotiteBtnBack"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/button_type1"
+            android:text="BACK"
+            android:textSize="12sp"/>
+    </RelativeLayout>
+
 
 </LinearLayout>

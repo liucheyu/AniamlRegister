@@ -68,7 +68,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         TextView tel;
         TextView remark;
         ImageView animailImage;
-        ImageButton btnMap,btnTel,btnFavotite;
+        ImageButton btnMap,btnTel,btnFavotite,btnClose;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -89,7 +89,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             btnMap = (ImageButton) itemView.findViewById(R.id.btnmap);
             btnTel = (ImageButton) itemView.findViewById(R.id.btntel);
             btnFavotite = (ImageButton) itemView.findViewById(R.id.btnFavorite);
-
+            btnClose = (ImageButton) itemView.findViewById(R.id.btnClose);
+            btnClose.setVisibility(View.GONE);
         }
     }
 
@@ -99,6 +100,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View itemView = layoutInflater.inflate(R.layout.adop_listview,viewGroup,false);
         MyViewHolder holder = new MyViewHolder(itemView);
+
 //        holder.kind = (TextView)itemView.findViewById(R.id.txtKind);
 //        holder.update = (TextView)itemView.findViewById(R.id.txtUpdate);
 //        holder.animalId = (TextView) itemView.findViewById(R.id.txtId);

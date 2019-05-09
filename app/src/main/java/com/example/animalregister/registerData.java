@@ -49,10 +49,18 @@ public class registerData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_data);
-
+        initTimeset();
         findViews();
 
 
+    }
+
+    private void initTimeset(){
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeZone(TimeZone.getTimeZone("GTM+8"));
+        mYear = cal.get(Calendar.YEAR);
+        mMonth = cal.get(Calendar.MONTH);
+        mDay = cal.get(Calendar.DAY_OF_MONTH);
     }
 
     private void findViews(){
@@ -73,11 +81,7 @@ public class registerData extends AppCompatActivity {
         btnDatePick.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                cal.setTimeZone(TimeZone.getTimeZone("GTM+8"));
-                mYear = cal.get(Calendar.YEAR);
-                mMonth = cal.get(Calendar.MONTH);
-                mDay = cal.get(Calendar.DAY_OF_MONTH);
+
                 DatePickerDialog.OnDateSetListener dateListerner = new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
