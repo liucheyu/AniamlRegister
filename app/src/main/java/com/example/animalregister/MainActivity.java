@@ -4,15 +4,18 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.CalendarContract;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
@@ -106,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
     //UrlFilter urlFilter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RelativeLayout  coverRelate;
-    private TextView loadingproblem,loadingfail;
+    private TextView tvloading,loadingproblem,loadingfail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,8 +154,9 @@ public class MainActivity extends AppCompatActivity {
         mSwipeRefreshLayout.setOnRefreshListener(refreshLis);
         recyclerView = findViewById(R.id.recycleview);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setVisibility(View.GONE);
+        //recyclerView.setVisibility(View.GONE);
         coverRelate = findViewById(R.id.coverRelate);
+        tvloading = findViewById(R.id.tvloading);
         loadingproblem = findViewById(R.id.loadingproblem);
         loadingfail = findViewById(R.id.loadingfail);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -212,7 +216,22 @@ public class MainActivity extends AppCompatActivity {
                         AlertDialog.Builder d = new AlertDialog.Builder(MainActivity.this);
                         d.setTitle("關於");
                         d.setMessage("歡迎使用此App，\n希望能透過此App\n讓更多流浪動物受到應有照顧。" +
-                                "\n關於此App有任何問題，\n請與開發者聯繫。\n開發者：LCY\nMail：liucheyu1987@gmail.com");
+                                "\n關於此App有任何問題，\n請與開發者聯繫。\n開發者：LCY\nMail：liucheyu1987@gmail.com")
+                        .setPositiveButton("Mail", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String mailto = "mailto:liucheyu1987@gmail.com";
+                                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                                emailIntent.setData(Uri.parse(mailto));
+                                try {
+                                    startActivity(emailIntent);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                    return;
+                                }
+                            }
+                        })
+                                .setCancelable(true);
                         d.show();
                         break;
                 }
@@ -231,7 +250,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onRefresh() {
             coverRelate.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
+            //recyclerView.setVisibility(View.INVISIBLE);
+            recyclerView.setEnabled(false);
 
             mSwipeRefreshLayout.setRefreshing(true);
             plusUrl = new String(url);
@@ -264,7 +284,8 @@ public class MainActivity extends AppCompatActivity {
             //String newJSON = new String(json);
             //String animalkind = null;
             coverRelate.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
+            //recyclerView.setVisibility(View.GONE);
+            recyclerView.setEnabled(false);
 
             switch (v.getId()){
                 case R.id.btnCat:
@@ -376,6 +397,7 @@ public class MainActivity extends AppCompatActivity {
                 coverRelate.setVisibility(View.VISIBLE);
 
                 loadingfail.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
             }
             //有回應時的事件
             @Override
@@ -393,6 +415,7 @@ public class MainActivity extends AppCompatActivity {
                         recyclerView.setAdapter(adopAdapter);
                         mSwipeRefreshLayout.setRefreshing(false);
                         recyclerView.setVisibility(View.VISIBLE);
+                        recyclerView.setEnabled(true);
                         coverRelate.setVisibility(View.GONE);
                         loadingfail.setVisibility(View.GONE);
 
@@ -479,7 +502,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     coverRelate.setVisibility(View.VISIBLE);
-                    recyclerView.setVisibility(View.GONE);
+                    //recyclerView.setVisibility(View.GONE);
+                    recyclerView.setEnabled(false);
                     switch (item.getItemId()){
                         case R.id.allRegion:
                             btnRegion.setText(getResources().getString(R.string.allRegion));
@@ -811,7 +835,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     coverRelate.setVisibility(View.VISIBLE);
-                    recyclerView.setVisibility(View.GONE);
+                    //recyclerView.setVisibility(View.GONE);
+                    recyclerView.setEnabled(false);
                     switch (item.getItemId()) {
                         case R.id.all_days:
                             btnUpdate.setText(getResources().getString(R.string.all_days));
@@ -909,7 +934,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     coverRelate.setVisibility(View.VISIBLE);
-                    recyclerView.setVisibility(View.GONE);
+                    //recyclerView.setVisibility(View.GONE);
+                    recyclerView.setEnabled(false);
                     switch (item.getItemId()) {
                         case R.id.all_age:
                             btnAge.setText(getResources().getString(R.string.all_age));
@@ -981,7 +1007,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     coverRelate.setVisibility(View.VISIBLE);
-                    recyclerView.setVisibility(View.GONE);
+                    //recyclerView.setVisibility(View.GONE);
+                    recyclerView.setEnabled(false);
                     switch (item.getItemId()) {
                         case R.id.all_sex:
                             btnSex.setText(getResources().getString(R.string.all_sex));

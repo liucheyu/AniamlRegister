@@ -81,7 +81,7 @@ public class register extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                registerListView.setVisibility(View.GONE);
+                //registerListView.setVisibility(View.GONE);
                 register_relate.setVisibility(View.VISIBLE);
                 kind = "all";
                 swipeRefreshLayout.setRefreshing(true);
@@ -104,7 +104,7 @@ public class register extends AppCompatActivity {
     Button.OnClickListener registerBtnBackLis = new Button.OnClickListener() {
         @Override
         public void onClick(View v) {
-            registerListView.smoothScrollToPosition(0);
+            //registerListView.smoothScrollToPosition(0);
         }
     };
 
@@ -112,7 +112,7 @@ public class register extends AppCompatActivity {
     Button.OnClickListener btnLis = new Button.OnClickListener() {
         @Override
         public void onClick(View v) {
-            registerListView.setVisibility(View.GONE);
+            //registerListView.setVisibility(View.GONE);
             register_relate.setVisibility(View.VISIBLE);
             int btnWhat = v.getId();
             switch (btnWhat){

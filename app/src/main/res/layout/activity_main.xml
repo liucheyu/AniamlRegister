@@ -135,35 +135,7 @@
 
 
     </LinearLayout>
-    <RelativeLayout
-        android:id="@+id/coverRelate"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible">
-        <TextView
-            android:id="@+id/tvloading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="讀取中..."
-            android:textSize="30sp"/>
-        <TextView
-            android:id="@+id/loadingproblem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_below="@id/tvloading"
-            android:text="若讀取時間過久，或讀取失敗，\n請檢查是否有連線至網路"/>
-        <TextView
-            android:id="@+id/loadingfail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_below="@id/loadingproblem"
-            android:visibility="gone"
-            android:text="連線失敗!!"/>
 
-    </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -190,6 +162,40 @@
             android:text="BACK"
             android:textSize="12sp"
             android:onClick="btnBack"/>
+
+        <RelativeLayout
+            android:id="@+id/coverRelate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#22808080"
+            android:visibility="visible">
+            <TextView
+                android:id="@+id/tvloading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="讀取中..."
+                android:textSize="30sp"
+                android:background="#ffffff"/>
+            <TextView
+                android:id="@+id/loadingproblem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_below="@id/tvloading"
+                android:text="若讀取時間過久，或讀取失敗，\n請檢查是否有連線至網路"
+                android:background="#ffffff"/>
+            <TextView
+                android:id="@+id/loadingfail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_below="@id/loadingproblem"
+                android:visibility="gone"
+                android:text="連線失敗!!"
+                android:background="#ffffff"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

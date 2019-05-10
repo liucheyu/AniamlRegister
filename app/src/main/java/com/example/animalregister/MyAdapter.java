@@ -1,5 +1,6 @@
 package com.example.animalregister;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -52,6 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         this.context = context;
         this.adoptList = adoptList;
         this.DBController = DBController;
+
     }
 
 
@@ -91,6 +93,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             btnFavotite = (ImageButton) itemView.findViewById(R.id.btnFavorite);
             btnClose = (ImageButton) itemView.findViewById(R.id.btnClose);
             btnClose.setVisibility(View.GONE);
+
         }
     }
 
@@ -123,7 +126,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
 
         //以ArrayList陣列位置，取得資料物件
         AdopData adopData = adoptList.get(position);
@@ -167,7 +170,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.remark.setText(remark);
         //圖片先預設一張顯示尚未有圖片
         //holder.animailImage.setImageResource(R.mipmap.noimage);
-        String image = adopData.getImageURL();
+        final String image = adopData.getImageURL();
         //判斷是否是空字串，不是空字串就是網址
 //        if(!image.equals("")){
             //getPic方法使用okHttp取得網址回應，再將回應的串流轉成Bitmap
@@ -177,6 +180,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     .placeholder(R.mipmap.noimage)
                     .error(R.mipmap.noimage)
                     .into(holder.animailImage);
+//        holder.animailImage.setOnClickListener(new ImageView.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////                View view = LayoutInflater.from(context).inflate(R.layout.dialog_image,null);
+////                ImageView imageView = view.findViewById(R.id.dialoguseimage);
+////                Bitmap bitmap = Glide.with(context).load(image)
+////                AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+////
+////
+////            }
+////        });
 
         //設定監聽，每個設定監聽內都有會返回實作事件的方法
         holder.btnMap.setOnClickListener(initMapButton(shelterName,shelterAddress));
@@ -205,6 +219,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return adoptList.size();
 
     }
+
+
+
     //會返回地圖按鈕的事件之方法，此方法當中有呼叫以地址反查經緯度的方法，並會轉跳至google地圖畫面
     ImageButton.OnClickListener initMapButton(final String shelter,final String address){
         ImageButton.OnClickListener maplis = new ImageButton.OnClickListener() {
