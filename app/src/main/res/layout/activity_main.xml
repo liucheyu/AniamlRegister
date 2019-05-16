@@ -181,11 +181,20 @@
                 android:textSize="30sp"
                 android:background="#ffffff"/>
             <TextView
-                android:id="@+id/loadingproblem"
+                android:id="@+id/tvrefresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_below="@id/tvloading"
+                android:text="讀取成功後下滑可更新頁面"
+                android:textSize="20sp"
+                android:background="#ffffff"/>
+            <TextView
+                android:id="@+id/loadingproblem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_below="@id/tvrefresh"
                 android:text="若讀取時間過久，或讀取失敗，\n請檢查是否有連線至網路"
                 android:background="#ffffff"/>
             <TextView

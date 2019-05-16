@@ -6,8 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="10dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
     android:background="#ffffff">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/favoritetopimage2" />
 
       <TextView
             android:layout_width="wrap_content"
@@ -26,7 +35,7 @@
         <Button
             android:id="@+id/btnCatR"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="貓"
@@ -34,7 +43,7 @@
         <Button
             android:id="@+id/btnDogR"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="狗"

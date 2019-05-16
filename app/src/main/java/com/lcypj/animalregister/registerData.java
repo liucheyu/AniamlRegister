@@ -3,6 +3,7 @@ package com.lcypj.animalregister;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +43,7 @@ public class registerData extends AppCompatActivity {
     JSONArray jsonArr;
     String txtRegister,txtUpdate,txtKind,txtColor,txtAge,txtSex,txtFind,txtShelter,txtContact,txtTel,txtRemark,txtUrl;
     //public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    ImageButton register_dataBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +78,13 @@ public class registerData extends AppCompatActivity {
         edtRemark = findViewById(R.id.edtRemark);
         edtUrl = findViewById(R.id.edtUrl);
         txtDateShow = findViewById(R.id.txtDateShow);
+        register_dataBack = findViewById(R.id.register_dataBack);
+        register_dataBack.setOnClickListener(new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerData.this.finish();
+            }
+        });
         btnDatePick = findViewById(R.id.btnDatePick);
         btnDatePick.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -201,9 +211,11 @@ public class registerData extends AppCompatActivity {
         });
 
     }
-    public void btndataBack(){
-        registerData.this.finish();
-
-    }
+//    public void btndataBack(){
+//        Intent it = new Intent(registerData.this,register.class);
+//        startActivity(it);
+//        this.finish();
+//
+//    }
 
 }
