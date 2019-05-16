@@ -28,7 +28,7 @@
     <string name="all_days">不限時間</string>
     <string name="three_days">3日內</string>
     <string name="one_week">1週內</string>
-    <string name="one_month">1個月內</string>
+    <string name="one_month">當月份</string>
     <string name="haft_year">半年內</string>
     <string name="today">今日</string>
 

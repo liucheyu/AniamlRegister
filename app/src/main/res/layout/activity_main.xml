@@ -154,14 +154,17 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
         <Button
+            android:id="@+id/btnGoToTop"
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:background="@drawable/button_type1"
-            android:text="BACK"
+            android:text="Top"
             android:textSize="12sp"
-            android:onClick="btnBack"/>
+            android:onClick="btnBack"
+            android:visibility="gone"
+            android:drawableRight="@mipmap/baseline_arrow_drop_up_black_36dp"/>
 
         <RelativeLayout
             android:id="@+id/coverRelate"
@@ -178,11 +181,20 @@
                 android:textSize="30sp"
                 android:background="#ffffff"/>
             <TextView
-                android:id="@+id/loadingproblem"
+                android:id="@+id/tvrefresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_below="@id/tvloading"
+                android:text="讀取成功後下滑可更新頁面"
+                android:textSize="20sp"
+                android:background="#ffffff"/>
+            <TextView
+                android:id="@+id/loadingproblem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_below="@id/tvrefresh"
                 android:text="若讀取時間過久，或讀取失敗，\n請檢查是否有連線至網路"
                 android:background="#ffffff"/>
             <TextView

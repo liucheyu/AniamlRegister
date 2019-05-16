@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Button btnCat,btnDog,btnReset;
     private Button btnRegion,btnUpdate,btnAge,btnSex;
+    private Button btnGoToTop;
     //private RelativeLayout relativeImage;
 
     //客戶端okHttp連線的物件
@@ -79,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RelativeLayout  coverRelate;
     private TextView tvloading,loadingproblem,loadingfail;
+    private int visibleItemCount,totalItemCuunt,pastVisibleItems;
+    private LinearLayoutManager linearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,10 +97,9 @@ public class MainActivity extends AppCompatActivity {
         okHttpClient = new OkHttpClient();
         //使用okhttp回傳JSON，當中還有解析JSON加進ArrayList的方法，以及設定Adapter
 
-
-
         new Thread(firstR).start();
 
+        initOnScrollList();
 
     }
 
@@ -128,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         tvloading = findViewById(R.id.tvloading);
         loadingproblem = findViewById(R.id.loadingproblem);
         loadingfail = findViewById(R.id.loadingfail);
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         btnCat = findViewById(R.id.btnCat);
@@ -150,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         btnAge.setOnClickListener(ageLis);
         btnSex = findViewById(R.id.btnSex);
         btnSex.setOnClickListener(sexLis);
-
+        btnGoToTop = findViewById(R.id.btnGoToTop);
         //側邊選單
         drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
         navigationView = (NavigationView)findViewById(R.id.navigation_view);
@@ -207,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
 
     }
 
@@ -343,7 +346,40 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private void initOnScrollList(){
 
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy>0){
+                    if(linearLayoutManager.findFirstVisibleItemPosition() ==0){
+                        btnGoToTop.setVisibility(View.GONE);
+                    }else{
+                        btnGoToTop.setVisibility(View.VISIBLE);
+                    }
+                }else{
+                    if(linearLayoutManager.findFirstVisibleItemPosition() ==0){
+                        btnGoToTop.setVisibility(View.GONE);
+                    }else{
+                        btnGoToTop.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                // visibleItemCount,totalItemCuunt,pastVisibleItems;
+
+
+            }
+        });
+
+
+    }
 
 
 
