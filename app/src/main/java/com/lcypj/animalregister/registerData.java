@@ -201,5 +201,9 @@ public class registerData extends AppCompatActivity {
         });
 
     }
+    public void btndataBack(){
+        registerData.this.finish();
+
+    }
 
 }

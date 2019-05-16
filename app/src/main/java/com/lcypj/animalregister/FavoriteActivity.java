@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -43,6 +44,7 @@ public class FavoriteActivity extends AppCompatActivity {
     private RelativeLayout favoriteRelate;
     private Button favotiteBtnBack;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +73,7 @@ public class FavoriteActivity extends AppCompatActivity {
                 });
             }
         }).start();
+        initOnScrollList();
 
 //        initList();
 //        runOnUiThread(new Runnable() {
@@ -145,6 +148,27 @@ public class FavoriteActivity extends AppCompatActivity {
         favoriteAdapter = new FavoriteAdapter(FavoriteActivity.this,favotiteList);
     }
 
+    private void initOnScrollList(){
+        falv.setOnScrollListener(new ListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(firstVisibleItem==0){
+                    favotiteBtnBack.setVisibility(View.GONE);
+                }else{
+                    favotiteBtnBack.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
+
+    public void favoriteBack(View view){
+        FavoriteActivity.this.finish();
+    }
 
 
 

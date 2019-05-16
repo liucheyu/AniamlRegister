@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -51,7 +52,7 @@ public class register extends AppCompatActivity {
         Thread th = new Thread(okhttpRun);
         th.start();
 
-
+        initOnScrollList();
     }
 
 //    protected void onResume(){
@@ -187,6 +188,27 @@ public class register extends AppCompatActivity {
             }
         });
 
+    }
+    private void initOnScrollList(){
+        registerListView.setOnScrollListener(new ListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(firstVisibleItem==0){
+                    registerBtnBack.setVisibility(View.GONE);
+                }else{
+                    registerBtnBack.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
+
+    public void btnregisterBack(View view){
+        register.this.finish();
     }
 
     private void parseJSON(String s){
